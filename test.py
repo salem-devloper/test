@@ -3,9 +3,11 @@ from pydicom import dcmread
 from tensorflow.keras.models import load_model
 import cv2
 import argparse
+import os
 import numpy as np
 from matplotlib import pyplot as plt
 from tqdm import tqdm
+from PIL import Image
 
 def get_args():
 
@@ -20,6 +22,8 @@ def get_args():
 
 args = get_args()
 model=load_model(args.load_model)
+os.mkdir('./res')
+out = './res'
 dirpath= args.path + '/test/*/*.jpeg'
 for file in tqdm(sorted(glob(dirpath))):
     print(file)
@@ -38,6 +42,7 @@ for file in tqdm(sorted(glob(dirpath))):
     plt.imshow(img.astype(np.float32),cmap='gray')
     plt.imshow(mask.reshape(256,256),cmap='Greens',alpha=0.5)
     plt.show()
+    Image.fromarray(masked_img).save(os.path.join(out,'mask_'+file))
     
 
     
