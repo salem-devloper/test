@@ -24,7 +24,7 @@ args = get_args()
 model=load_model(args.load_model)
 os.mkdir('./res')
 out = './res'
-dirpath= args.path + '/test/*/*.jpeg'
+dirpath= args.path + '/*.png'
 for file in tqdm(sorted(glob(dirpath))):
     print(file)
     img=cv2.imread(file)
