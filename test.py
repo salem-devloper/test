@@ -43,7 +43,7 @@ for file in tqdm(sorted(glob(dirpath))):
     #plt.imshow(img.astype(np.float32),cmap='gray')
     #plt.imshow(mask.reshape(256,256),cmap='Greens',alpha=0.5)
     #plt.show()
-    Image.fromarray(mask).save(os.path.join(out,'mask_'+os.path.basename(file)))
+    Image.fromarray(masked_img).save(os.path.join(out,'mask_'+os.path.basename(file)))
     
 
     
