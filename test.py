@@ -35,6 +35,7 @@ for file in tqdm(sorted(glob(dirpath))):
     mask=model.predict(np.expand_dims(img,axis=0))
     mask[mask<0.5]=0.0
     mask[mask>0.5]=1.0
+    print(mask)
     img=cv2.imread(file,0)
     img=cv2.resize(img,(256,256)).reshape(256,256)
     masked_img=np.squeeze(img*mask.reshape(256,256))
