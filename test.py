@@ -13,9 +13,9 @@ def get_args():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     # set your environment
-    parser.add_argument('--path',type=str,default='./Lung-Segmentation-TF')
+    parser.add_argument('--path',type=str,default='./test')
 
-    parser.add_argument('--load_model', type=str, default='./Lung-Segmentation-TF/lung_seg_valiou_088.h5', help='.pth file path to load model')
+    parser.add_argument('--load_model', type=str, default='./test/lung_seg_valiou_088.h5', help='.pth file path to load model')
     return parser.parse_args()
 
 args = get_args()
