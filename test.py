@@ -41,6 +41,8 @@ for file in tqdm(sorted(glob(dirpath))):
     masked_img=np.squeeze(img*mask.reshape(256,256))
     masked_img=cv2.resize(masked_img,(width,height)).astype(np.int16)
     print(masked_img)
+    img_save = Image.open(masked_img)
+    img_save.save(os.path.join(out,'mask_'+os.path.basename(file)))
     #plt.imshow(img.astype(np.float32),cmap='gray')
     #plt.imshow(mask.reshape(256,256),cmap='Greens',alpha=0.5)
     #plt.show()
