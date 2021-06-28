@@ -24,7 +24,7 @@ args = get_args()
 model=load_model(args.load_model)
 os.mkdir('./res')
 out = './res'
-dirpath= args.path + '/*.jpeg'
+dirpath= args.path + '/*.png'
 for file in tqdm(sorted(glob(dirpath))):
     #print(file)
     img=cv2.imread(file)
@@ -42,14 +42,14 @@ for file in tqdm(sorted(glob(dirpath))):
     masked_img=cv2.resize(masked_img,(width,height)).astype(np.int16)
     #print(masked_img)
     #img_save = Image.open(masked_img)
-    img_save = Image.fromarray(masked_img, 'RGB')
-    img_save.save(os.path.join(out,'mask_'+os.path.basename(file)))
-    img_save.show()
+    #img_save = Image.fromarray(masked_img, 'RGB')
+    #img_save.save(os.path.join(out,'mask_'+os.path.basename(file)))
+    #img_save.show()
     
-    #plt.imshow(img.astype(np.float32),cmap='gray')
-    #plt.imshow(mask.reshape(256,256),cmap='Greens',alpha=0.5)
-    #plt.show()
-    #Image.fromarray(masked_img).save(os.path.join(out,'mask_'+os.path.basename(file)))
+    plt.imshow(img.astype(np.float32),cmap='gray')
+    plt.imshow(mask.reshape(256,256),cmap='Greens',alpha=0.5)
+    plt.show()
+    Image.fromarray(masked_img).save(os.path.join(out,'mask_'+os.path.basename(file)))
     
 
     
