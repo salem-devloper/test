@@ -26,7 +26,7 @@ os.mkdir('./res')
 out = './res'
 dirpath= args.path + '/*.jpeg'
 for file in tqdm(sorted(glob(dirpath))):
-    print(file)
+    #print(file)
     img=cv2.imread(file)
     raw_img=img
     width,height=raw_img.shape[1],raw_img.shape[0]
@@ -40,9 +40,12 @@ for file in tqdm(sorted(glob(dirpath))):
     img=cv2.resize(img,(256,256)).reshape(256,256)
     masked_img=np.squeeze(img*mask.reshape(256,256))
     masked_img=cv2.resize(masked_img,(width,height)).astype(np.int16)
-    print(masked_img)
-    img_save = Image.open(masked_img)
+    #print(masked_img)
+    #img_save = Image.open(masked_img)
+    img_save = Image.fromarray(masked_img, 'RGB')
     img_save.save(os.path.join(out,'mask_'+os.path.basename(file)))
+    img_save.show()
+    
     #plt.imshow(img.astype(np.float32),cmap='gray')
     #plt.imshow(mask.reshape(256,256),cmap='Greens',alpha=0.5)
     #plt.show()
